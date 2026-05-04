@@ -2,33 +2,29 @@
 
 {% block body %}
 <section id="content" class="s-content">
-    <!-- intro
-            ----------------------------------------------- -->
+    <!-- intro -->
     <section id="intro" class="s-intro">
 
         <div class="row s-intro__content width-sixteen-col">
 
             <div class="column lg-12 s-intro__content-inner grid-block">
-
+                {% for i in intro %}
                 <div class="s-intro__content-text">
-                    <div class="s-intro__content-pretitle text-pretitle">Hello, I'm Monica</div>
+                    <div class="s-intro__content-pretitle text-pretitle">{{ i.tag|safe }}</div>
                     <h1 class="s-intro__content-title">
-                        I create marketing <br>
-                        strategies for your <br>
-                        business that get <br>
-                        results.
+                        {{ i.title|safe }}
                     </h1>
                 </div> <!-- s-intro__content-text -->
 
                 <div class="s-intro__content-media">
                     <div class="s-intro__content-media-inner">
-                        <img src="images/intro-bg.jpg" srcset="images/intro-bg.jpg 1x, images/intro-bg@2x.jpg 2x"
-                            alt="">
+                        <img src="{{ i.image.url }}" srcset="images/intro-bg.jpg 1x, images/intro-bg@2x.jpg 2x" alt="">
                         <div class="lines">
                             <span></span>
                         </div>
                     </div>
                 </div> <!-- s-intro__content-media -->
+                {% endfor %}
 
                 <div class="s-intro__scroll-down">
                     <a href="#about" class="smoothscroll">
@@ -49,9 +45,213 @@
 
         </div> <!-- s-intro__content -->
 
-    </section> 
-    
+    </section>
     <!-- end s-intro -->
+
+
+    <!-- about -->
+    <section id="about" class="s-about target-section">
+
+        <div class="row s-about__content width-sixteen-col">
+            {% for i in about %}
+            <div class="column grid-block grid-section-split">
+
+                <img src="images/geometric_shape.svg" alt="" class="s-about__content-imgbg">
+                <div class="section-header grid-section-split__header">
+                    <div class="text-pretitle">{{ i.tag|safe }}</div>
+                    <h2 class="text-display-title">
+                        {{ i.title|safe }}
+                    </h2>
+                </div> <!-- end section-header -->
+
+                <div class="s-about__content-main grid-section-split__primary">
+                    <p class="attention-getter">
+                        {{ i.dec|safe }}
+                    </p>
+                </div> <!-- end s-about__content-main -->
+            </div> <!-- content-inner -->
+            {% endfor %}
+
+        </div>
+
+    </section>
+    <!-- end s-about -->
+
+    <!-- expertise
+            ----------------------------------------------- -->
+    <section id="expertise" class="s-expertise">
+
+        <div class="row s-expertise__content width-sixteen-col">
+            <div class="column xl-12 grid-block grid-section-split">
+                {% for i in expertiseone %}
+                <div class="section-header grid-section-split__header">
+                    <div class="text-pretitle">{{ i.tag|safe }}</div>
+                    <h2 class="text-display-title">
+                        {{ i.title|safe }}
+                    </h2>
+
+                    <p class="lead">
+                        {{ i.dec|safe }}
+                    </p>
+                </div> <!-- end section-header -->
+                {% endfor %}
+
+
+                <div class="s-expertise__content-main grid-section-split__primary">
+                    {% for i in expertisetwo %}
+                    <div class="grid-list-items list-items show-ctr">
+                        <div class="grid-list-items__item list-items__item">
+                            <div class="grid-list-items__title list-items__item-header">
+                                <h3 class="list-items__item-title">{{ i.tag|safe }}</h3>
+                            </div>
+                            <div class="grid-list-items__text list-items__item-text">
+                                <p>
+                                    {{ i.title|safe }}
+                                </p>
+                            </div>
+                        </div> <!-- list-item -->
+                    </div> <!-- grid-list-items -->
+                    {% endfor %}
+                </div> <!-- end s-expertise__content-main -->
+
+            </div> <!-- end grid-block-->
+        </div> <!-- end s-expertise__content -->
+
+    </section> <!-- end s-expertise -->
+
+
+    <!-- clients
+            ----------------------------------------------- -->
+    <section id="clients" class="s-clients">
+
+        <div class="row s-clients__content-block width-sixteen-col">
+            {% for i in client %}
+            <div class="column xl-12 grid-block grid-section-split">
+
+                <div class="section-header grid-section-split__header">
+                    <div class="text-pretitle">{{i.tag|safe}}</div>
+                    <h2 class="text-display-title">
+                        {{i.title|safe}}
+                    </h2>
+                </div> <!-- end section-header -->
+
+                <div class="grid-section-split__primary">
+                    <p class="lead">
+                        {{i.dec|safe}}
+                    </p>
+                </div> <!-- end grid-section-split__primary -->
+
+            </div> <!-- end column -->
+            {% endfor %}
+        </div> <!-- end row -->
+
+        <div class="row s-clients__content-block width-sixteen-col">
+            {% for i in logo %}
+            <div class="column xl-12">
+
+                <div class="clients-list">
+                    <div class="clients-list__item">
+                        <a href="#0">
+                            <img src="{{i.image.url}}" alt="">
+                        </a>
+                    </div>
+                </div> <!-- end clients-list -->
+
+            </div> <!-- end column -->
+            {% endfor %}
+        </div> <!-- end row -->
+
+        <div class="row s-clients__content-block width-sixteen-col">
+            <div class="column xl-12 testimonials">
+
+                <div class="swiper-container testimonials__slider home-slider">
+                    <div class="swiper-wrapper">
+
+                        {% for i in testimonials %}
+                        <div class="testimonials__slide swiper-slide">
+                            <p>
+                                {{i.tag|safe}}
+                            </p>
+                            <div class="testimonials__author">
+                                <img src="{{i.image.url}}" alt="Author image" class="testimonials__avatar">
+                                <cite class="testimonials__cite">
+                                    <strong>{{i.title|safe}}</strong>
+                                    <span>{{i.dec|safe}}</span>
+                                </cite>
+                            </div>
+                        </div> <!-- end swiper-wrapper -->
+                        {% endfor %}
+
+                    </div> <!--end testimonials__slider -->
+
+                </div> <!-- end column -->
+            </div> <!-- end row -->
+
+
+    </section> <!-- end s-clients -->
+
+
+    <!-- # cta
+        ================================================== -->
+    <section id="cta" class="s-cta">
+
+        <div class="row row-x-center text-center">
+            {% for i in contact %}
+            <div class="column xl-8 lg-12">
+                <div class="s-cta__content">
+                    <h2 class="text-display-title">
+                        {{i.tag|safe}}
+                    </h2>
+                    <p class="lead">
+                        {{i.title|safe}}
+                    </p>
+                    <a href="contact.html" class="btn btn--primary">Let's Work Together</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </section> <!-- end s-cta -->
+
+
+    <!-- # journal
+        ================================================== -->
+    <section id="journal" class="s-journal">
+
+        <div class="row s-journal__content width-sixteen-col">
+            <div class="column xl-12 grid-block">
+
+                <div class="grid-full section-header text-center">
+                    {% for i in journalone %}
+                    <div class="text-pretitle">{{i.tag|safe}}</div>
+                    <h2 class="text-display-title">
+                        {{i.title|safe}}
+                    </h2>
+                    {% endfor %}
+                </div> <!-- end section-header -->
+
+                <div class="grid-full s-journal__content-main grid-list-items">
+                    {% for i in journaltwo %}
+                    <div class="grid-list-items__item blog-card">
+                        <div class="blog-card__header">
+                            <div class="blog-card__cat-links">
+                                <a href="https://www.dreamhost.com/r.cgi?287326">{{i.tag|safe}}</a>
+                            </div>
+                            <h3 class="blog-card__title">{{i.title|safe}}</h3>
+                        </div>
+                        <div class="blog-card__text">
+                            <p>
+                                {{i.dec|safe}}
+                            </p>
+                        </div>
+                    </div> <!-- end grid-list-items -->
+                    {% endfor %}
+                </div> <!-- end grid-block-->
+            </div> <!-- end s-journal__content -->
+
+    </section> <!-- end s-journal -->
+
+
 
 </section>
 
